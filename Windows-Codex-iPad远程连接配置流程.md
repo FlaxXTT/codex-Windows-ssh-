@@ -126,6 +126,32 @@ remote_control = true
 
 修改完成后保存文件。建议不要把自己的完整 `config.toml` 发布到网上，因为里面可能包含本机路径、项目目录、MCP 服务或环境变量配置。
 
+**重要提醒：保存后建议把 `config.toml` 设置为只读。**
+
+操作路径：
+
+```text
+C:\Users\<你的用户名>\.codex\config.toml
+```
+
+在文件资源管理器中打开：
+
+1. 进入 `C:\Users\<你的用户名>\.codex`
+2. 找到 `config.toml`
+3. 右键文件，选择“属性”
+4. 勾选“只读”
+5. 点击“应用”，再点击“确定”
+
+这样可以减少配置被自动改动或覆盖的情况。如果以后需要修改 Codex 配置、添加 MCP、切换插件或重新保存设置，需要先取消“只读”，改完后再重新勾选。
+
+也可以用 PowerShell 检查是否已经只读：
+
+```powershell
+(Get-Item "$env:USERPROFILE\.codex\config.toml").IsReadOnly
+```
+
+如果返回 `True`，说明已经是只读。
+
 ## 5. 启动 Windows 远程连接服务
 
 这是关键步骤。
