@@ -100,7 +100,33 @@ codex login status
 Logged in using ChatGPT
 ```
 
-## 4. 启动 Windows 远程连接服务
+## 4. 在 config.toml 中启用远程连接功能
+
+Codex 的用户配置文件通常在：
+
+```text
+C:\Users\<你的用户名>\.codex\config.toml
+```
+
+可以用记事本打开：
+
+```powershell
+notepad "$env:USERPROFILE\.codex\config.toml"
+```
+
+在文件中加入或确认存在下面配置：
+
+```toml
+[features]
+remote_connections = true
+remote_control = true
+```
+
+如果文件里已经有 `[features]` 段，只需要把这两行加到原来的 `[features]` 段下面，不要重复写多个 `[features]`。
+
+修改完成后保存文件。建议不要把自己的完整 `config.toml` 发布到网上，因为里面可能包含本机路径、项目目录、MCP 服务或环境变量配置。
+
+## 5. 启动 Windows 远程连接服务
 
 这是关键步骤。
 
@@ -114,7 +140,7 @@ codex app-server --listen off --remote-control
 
 如果你想让它在后台运行，可以新开一个 PowerShell 窗口专门执行这条命令，不要关闭窗口。
 
-## 5. 这个命令的实际作用
+## 6. 这个命令的实际作用
 
 ```powershell
 codex app-server
@@ -143,7 +169,7 @@ Windows Codex CLI app-server
 -> 建立远程控制会话
 ```
 
-## 6. 在 iPad 上连接
+## 7. 在 iPad 上连接
 
 1. 打开 iPad 上的 ChatGPT App。
 2. 进入 Codex / connection / remote desktop 相关页面。
@@ -163,7 +189,7 @@ YOUR-PC-NAME
 hostname
 ```
 
-## 7. 验证和排查
+## 8. 验证和排查
 
 ### 检查 Codex 是否登录
 
@@ -227,7 +253,7 @@ codex doctor
 - iPad App 页面状态没有刷新，需要完全退出后重开。
 - Codex CLI 版本太旧，需要更新。
 
-## 8. 重启电脑后怎么办
+## 9. 重启电脑后怎么办
 
 重启电脑后，之前的 PowerShell 进程会消失，需要重新运行：
 
@@ -237,7 +263,7 @@ codex app-server --listen off --remote-control
 
 然后再打开 iPad ChatGPT 的 connection 页面。
 
-## 9. 不推荐的命令
+## 10. 不推荐的命令
 
 下面这个命令在 Windows 上可能不可用：
 
@@ -257,7 +283,7 @@ Error: codex app-server daemon lifecycle is only supported on Unix platforms
 codex app-server --listen off --remote-control
 ```
 
-## 10. 最小可复现流程
+## 11. 最小可复现流程
 
 如果从零开始，只需要按这个顺序执行：
 
@@ -266,6 +292,7 @@ npm install -g @openai/codex@latest
 codex --version
 codex login
 codex login status
+# 编辑 C:\Users\<你的用户名>\.codex\config.toml，加入 [features] 配置
 codex app-server --listen off --remote-control
 ```
 
