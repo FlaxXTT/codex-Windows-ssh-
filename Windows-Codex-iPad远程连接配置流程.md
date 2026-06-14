@@ -321,5 +321,3 @@ codex login status
 # 编辑 C:\Users\<你的用户名>\.codex\config.toml，加入 [features] 配置
 codex app-server --listen off --remote-control
 ```
-
-然后在 iPad ChatGPT 里进入 connection 页面，选择 Windows 设备即可。
